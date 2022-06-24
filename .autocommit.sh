@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #####################################################################
 ### Please set the paths accordingly. In case you don't have all  ###
 ### the listed folders, just keep that line commented out.        ###
 #####################################################################
-### Path to your config folder you want to back up
+### Path to your config folder you want to backup
 config_folder=~/klipper_config
 
 ### Path to your Klipper folder, by default that is '~/klipper'
@@ -26,41 +26,37 @@ config_folder=~/klipper_config
 #####################################################################
 ################ !!! DO NOT EDIT BELOW THIS LINE !!! ################
 #####################################################################
-grab_version() {
-  local klipper_commit moonraker_commit
-  local mainsail_ver fluidd_ver
-
-  if [[ -n ${klipper_folder} ]]; then
-    cd "${klipper_folder}"
+grab_version(){
+  if [ ! -z "$klipper_folder" ]; then
+    cd "$klipper_folder"
     klipper_commit=$(git rev-parse --short=7 HEAD)
-    m1="Klipper on commit: ${klipper_commit}"
+    m1="Klipper on commit: $klipper_commit"
+    cd ..
   fi
-  if [[ -n ${moonraker_folder} ]]; then
-    cd "${moonraker_folder}"
+  if [ ! -z "$moonraker_folder" ]; then
+    cd "$moonraker_folder"
     moonraker_commit=$(git rev-parse --short=7 HEAD)
-    m2="Moonraker on commit: ${moonraker_commit}"
+    m2="Moonraker on commit: $moonraker_commit"
+    cd ..
   fi
-  if [[ -n ${mainsail_folder} ]]; then
-    mainsail_ver=$(head -n 1 "${mainsail_folder}/.version")
-    m3="Mainsail version: ${mainsail_ver}"
+  if [ ! -z "$mainsail_folder" ]; then
+    mainsail_ver=$(head -n 1 $mainsail_folder/.version)
+    m3="Mainsail version: $mainsail_ver"
   fi
-  if [[ -n ${fluidd_folder} ]]; then
-    fluidd_ver=$(head -n 1 "${fluidd_folder}/.version")
-    m4="Fluidd version: ${fluidd_ver}"
+  if [ ! -z "$fluidd_folder" ]; then
+    fluidd_ver=$(head -n 1 $fluidd_folder/.version)
+    m4="Fluidd version: $fluidd_ver"
   fi
 }
 
-push_config() {
-  local current_date
-  
-  cd "${config_folder}" || exit 1
+push_config(){
+  cd $config_folder
   git pull
   git add .
   current_date=$(date +"%Y-%m-%d %T")
-  git commit -m "Autocommit from ${current_date}" -m "${m1}" -m "${m2}" -m "${m3}" -m "${m4}"
+  git commit -m "Autocommit from $current_date" -m "$m1" -m "$m2" -m "$m3" -m "$m4"
   git push
 }
 
 grab_version
 push_config
-
