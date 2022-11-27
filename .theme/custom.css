@@ -6,10 +6,39 @@
     font-family: 'Rubik', sans-serif;
 */
 
+/* Logo font */
 #app > div.v-application--wrap > div:nth-child(2) > header > div > div.v-toolbar__title.text-no-wrap.ml-0.pl-2.mr-2 {
     font-family: 'Rubik', sans-serif !important;
 }
 
+/* Dashboard titles font */
 #page-container > div > div > div.col-7.col > div.v-card.v-sheet.theme--dark.panel.miniconsole-panel.mb-3.mb-md-6 > div > div > div.v-card__text.order-2.pa-0 > div > div > div > div.os-padding > div > div > div {
     /*font-family: 'Roboto Mono', monospace !important;*/
 }
+
+/* Background color 
+.theme--dark.v-application {
+  background-color: #ffffff !important;
+} */
+
+/* Dashboard window title background color 
+.theme--dark.v-toolbar.v-sheet {
+  background-color: #ffffff !important;
+} */
+
+/* Themer 
+:root {
+    --Primary:        #282a36;    
+    --Secondary:      #ff5555;    
+    --c_blue:         #00eafb;    
+    --c_gray:         #2b2b2b;    
+    --Blue:           #00eafb;    
+    --Red:            #ff5555;    
+    --Warnings:       #00eafb;    
+    --Text:           #f8f8f2;    
+    --DarkerText:     #f5f5f2;    
+    --Background:     #44475a;    
+    --DarkBackground: #282a36;    
+    --Toolbars:       #44475a;    
+    --Sheets:         #282a36;    
+} */
